@@ -1,0 +1,28 @@
+* {
+  box-sizing: border-box;
+  font-size: 62.5;
+}
+body {
+  font-family: arial, sans-serif;
+  font-size: 1.6rem;
+}
+img {
+  height: 250px;
+  width: 250px;
+}
+.info-container {
+  width: 1080px;
+  margin: 20px auto 0;
+  background-color: #f6f6f6;
+  padding: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-flow: row nowrap;
+  border: 2px solid #2196f3;
+}
+.info-container .name {
+  align-self: flex-start;
+}
+.info-container .tries {
+  align-self: flex-end;
+}
