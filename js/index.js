@@ -7,25 +7,24 @@ document.querySelector(".control-buttons span").onclick = function () {
     document.querySelector(".name span").innerHTML = yourName;
   }
   document.querySelector(".control-buttons").remove();
-  // function playBg() {
-  //   document.getElementById("success").play();
-  // }
-  // playBg();
-
-  // myAudio = new Audio("../audio/success-sound-effect.mp3");
-  // if (typeof myAudio.loop == "boolean") {
-  //   myAudio.loop = true;
-  // } else {
-  //   myAudio.addEventListener(
-  //     "ended",
-  //     function () {
-  //       this.currentTime = 0;
-  //       this.play();
-  //     },
-  //     false
-  //   );
-  // }
-  // myAudio.play();
+  // this function will play a background audio
+  //I could've done it in an easier way by just adding an onclick attribute to the (start game)
+  // then creating a function that loads the .mp3 and play() it
+  //However with that easier way i'll not be able to repeat the sound after it ends
+  myAudio = new Audio("../audio/piano-moment.mp3");
+  if (typeof myAudio.loop == "boolean") {
+    myAudio.loop = true;
+  } else {
+    myAudio.addEventListener(
+      "ended",
+      function () {
+        this.currentTime = 0;
+        this.play();
+      },
+      false
+    );
+  }
+  myAudio.play();
 };
 // setting a duration for every two cards, so I can't start flipping a new card until the first two go back to their previous situation.
 const duration = 1000;
@@ -97,23 +96,28 @@ function stopClicking() {
 // checking the matched blocks
 function checkMatchedBlocks(firstBlock, secondBlock) {
   let triesElement = document.querySelector(".tries span");
+  // I'll select the the the flipped cards accourding to thier data custom (eg. data-animal="cat")
   if (firstBlock.dataset.animal == secondBlock.dataset.animal) {
+    // if they are matched then romove the (is flipped) class and put instead (hat-match)
+    // then after a half second play the success sound
     firstBlock.classList.remove("is-flipped");
     secondBlock.classList.remove("is-flipped");
-    console.log("pingo");
+    // console.log("pingo");
 
     firstBlock.classList.add("has-match");
     secondBlock.classList.add("has-match");
-
-    document.getElementById("success").play();
+    setTimeout(() => {
+      document.getElementById("success").play();
+    }, 500);
   } else {
-    triesElement.innerHTML = parseInt(triesElement.innerHTML) + 1;
-
+    triesElement.innerHTML = parseInt(triesElement.innerHTML) + 1; // counting the tries
+    // if the two cards aren't the same, the remove the (is-flipped) to make them turn back and the failure sound
     setTimeout(() => {
       firstBlock.classList.remove("is-flipped");
       secondBlock.classList.remove("is-flipped");
     }, 1000);
-
-    document.getElementById("failure").play();
+    setTimeout(() => {
+      document.getElementById("failure").play();
+    }, 500);
   }
 }
