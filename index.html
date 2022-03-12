@@ -151,8 +151,18 @@
 
     <!-- creating the splash screen that includes the start game button -->
     <div class="control-buttons">
-      <span>Start Game</span>
+      <span onclick="playBg()">Start Game</span>
     </div>
+    <audio
+      src="./audio/success-sound-effect.mp3"
+      preload="auto"
+      id="success"
+    ></audio>
+    <audio
+      src="./audio/failure-drum-sound-effect.mp3"
+      preload="auto"
+      id="failure"
+    ></audio>
     <script src="./js/index.js"></script>
   </body>
 </html>

@@ -7,6 +7,25 @@ document.querySelector(".control-buttons span").onclick = function () {
     document.querySelector(".name span").innerHTML = yourName;
   }
   document.querySelector(".control-buttons").remove();
+  // function playBg() {
+  //   document.getElementById("success").play();
+  // }
+  // playBg();
+
+  // myAudio = new Audio("../audio/success-sound-effect.mp3");
+  // if (typeof myAudio.loop == "boolean") {
+  //   myAudio.loop = true;
+  // } else {
+  //   myAudio.addEventListener(
+  //     "ended",
+  //     function () {
+  //       this.currentTime = 0;
+  //       this.play();
+  //     },
+  //     false
+  //   );
+  // }
+  // myAudio.play();
 };
 // setting a duration for every two cards, so I can't start flipping a new card until the first two go back to their previous situation.
 const duration = 1000;
@@ -85,6 +104,8 @@ function checkMatchedBlocks(firstBlock, secondBlock) {
 
     firstBlock.classList.add("has-match");
     secondBlock.classList.add("has-match");
+
+    document.getElementById("success").play();
   } else {
     triesElement.innerHTML = parseInt(triesElement.innerHTML) + 1;
 
@@ -92,5 +113,7 @@ function checkMatchedBlocks(firstBlock, secondBlock) {
       firstBlock.classList.remove("is-flipped");
       secondBlock.classList.remove("is-flipped");
     }, 1000);
+
+    document.getElementById("failure").play();
   }
 }

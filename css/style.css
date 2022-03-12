@@ -17,7 +17,8 @@ body {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-  border: 2px solid #2196f3;
+  border: 0.2rem solid #2196f3;
+  border-radius: 0.5rem;
 }
 /* .info-container .name {
   align-self: flex-start;
@@ -62,7 +63,8 @@ body {
   height: 100%;
   text-align: center;
   backface-visibility: hidden;
-  border: 5px solid #2196f3;
+  border: 0.3rem solid #2196f3;
+  border-radius: 0.5rem;
 }
 /* putting a symbol on the front part */
 .memory-game-blocks .game-block .front:before {
@@ -75,6 +77,7 @@ body {
 .memory-game-blocks .game-block.is-flipped,
 .memory-game-blocks .game-block.has-match {
   transform: rotateY(180deg);
+  pointer-events: none; /* to prevent clicking on an opened card*/
 }
 /* designing the splash screen */
 .control-buttons {
