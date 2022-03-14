@@ -6,6 +6,7 @@
 body {
   font-family: arial, sans-serif;
   font-size: 1.6rem;
+  background-color: #ccc;
 }
 
 .info-container {
@@ -17,7 +18,7 @@ body {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-  border: 0.2rem solid #2196f3;
+  border: 0.2rem solid black;
   border-radius: 0.5rem;
 }
 /* .info-container .name {
@@ -49,7 +50,7 @@ body {
   line-height: 200px; /* the size of line height is the same as the height of the memory block. why? to get the whole size*/
 }
 .memory-game-blocks .game-block .back {
-  background-color: #60708b;
+  background-color: #ccc;
   transform: rotateY(180deg);
 }
 .memory-game-blocks .game-block .back img {
@@ -63,7 +64,7 @@ body {
   height: 100%;
   text-align: center;
   backface-visibility: hidden;
-  border: 0.3rem solid #2196f3;
+  border: 0.3rem solid #fff;
   border-radius: 0.5rem;
 }
 /* putting a symbol on the front part */
