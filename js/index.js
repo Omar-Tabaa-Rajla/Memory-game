@@ -1,6 +1,8 @@
 import { backGroundAudio } from "./backGroundAudio.js";
+import { checkMatchedBlocks } from "./checkMatchedBlocks.js";
 // taking the UserName & removing the splash screen (onclick())
-document.querySelector(".control-buttons span").onclick = function () {
+const startClick = document.querySelector(".control-buttons span");
+startClick.onclick = function () {
   const yourName = prompt("What's your name?");
   if (yourName == null || yourName == "") {
     document.querySelector(".name span").innerHTML = "Player";
@@ -34,8 +36,8 @@ document.querySelector(".control-buttons span").onclick = function () {
   function endTime() {
     document.querySelector(".timer span").innerHTML = "Time Out";
     // backGroundAudio.stop();
-    document.getElementById("end-sound").play();
     blocksContainer.classList.add("no-clicking");
+    document.getElementById("end-sound").play();
 
     setTimeout(() => {
       window.location.reload();
@@ -108,37 +110,4 @@ function stopClicking() {
   setTimeout(() => {
     blocksContainer.classList.remove("no-clicking");
   }, duration);
-}
-// checking the matched blocks
-function checkMatchedBlocks(firstBlock, secondBlock) {
-  let triesElement = document.querySelector(".tries span");
-  // I'll select the the the flipped cards accourding to thier data custom (eg. data-animal="cat")
-  if (firstBlock.dataset.animal == secondBlock.dataset.animal) {
-    // if they are matched then romove the (is flipped) class and put instead (hat-match)
-    // then after a half second play the success sound
-    firstBlock.classList.remove("is-flipped");
-    secondBlock.classList.remove("is-flipped");
-    // console.log("pingo");
-
-    firstBlock.classList.add("has-match");
-    secondBlock.classList.add("has-match");
-    setTimeout(() => {
-      document.getElementById("success").play();
-    }, 500);
-  } else {
-    triesElement.innerHTML = parseInt(triesElement.innerHTML) + 1; // counting the tries
-    // if the two cards aren't the same, the remove the (is-flipped) to make them turn back and the failure sound
-    setTimeout(() => {
-      firstBlock.classList.remove("is-flipped");
-      secondBlock.classList.remove("is-flipped");
-    }, 1000);
-    setTimeout(() => {
-      document.getElementById("failure").play();
-    }, 500);
-  }
-  if (document.querySelectorAll(".has-match").length === 20) {
-    setTimeout(() => {
-      window.location.reload();
-    }, 2500);
-  }
 }
