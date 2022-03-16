@@ -7,25 +7,9 @@ document.querySelector(".control-buttons span").onclick = function () {
     document.querySelector(".name span").innerHTML = yourName;
   }
   document.querySelector(".control-buttons").remove();
-  // this function will play a background audio
-  //I could've done it in an easier way by just adding an onclick attribute to the (start game)
-  // then creating a function that loads the .mp3 and play() it
-  //However with that easier way i'll not be able to repeat the sound after it ends
-  myAudio = new Audio("../audio/piano-moment.mp3");
-  if (typeof myAudio.loop == "boolean") {
-    myAudio.loop = true;
-  } else {
-    myAudio.addEventListener(
-      "ended",
-      function () {
-        this.currentTime = 0;
-        this.play();
-      },
-      false
-    );
-  }
+  // to play the bg sound
   myAudio.play();
-  // setting a timer
+  //setting a timer
   const myTimer = document.querySelector(".timer span");
   let levelOneDuration = 5;
   displayTime(levelOneDuration);
@@ -126,7 +110,7 @@ function stopClicking() {
 }
 // checking the matched blocks
 function checkMatchedBlocks(firstBlock, secondBlock) {
-  let triesElement = document.querySelector(".tries span");
+  let triesElement = doecument.querySelector(".tries span");
   // I'll select the the the flipped cards accourding to thier data custom (eg. data-animal="cat")
   if (firstBlock.dataset.animal == secondBlock.dataset.animal) {
     // if they are matched then romove the (is flipped) class and put instead (hat-match)
@@ -151,16 +135,27 @@ function checkMatchedBlocks(firstBlock, secondBlock) {
       document.getElementById("failure").play();
     }, 500);
   }
+  if (document.querySelectorAll(".has-match").length === 20) {
+    setTimeout(() => {
+      window.location.reload();
+    }, 2500);
+  }
 }
-
-// setting the timer. Maximum 90 seconds
-// let myTimer = document.querySelector(".timer span");
-// myTimer.innerHTML = levelOneDuration + " seconds";
-// windows.onload() = function () {
-//   let levelOneDuration = 90;
-//   myTimer.innerHTML= levelOneDuration + " seconds";
-//   setInterval(function () {
-
-//     levelOneDuration--;
-//   });
-// };
+// background audio and call it when onclick event
+// this function will play a background audio
+//I could've done it in an easier way by just adding an onclick attribute to the (start game)
+// then creating a function that loads the .mp3 and play() it
+//However with that easier way i'll not be able to repeat the sound after it ends
+myAudio = new Audio("../audio/piano-moment.mp3");
+if (typeof myAudio.loop == "boolean") {
+  myAudio.loop = true;
+} else {
+  myAudio.addEventListener(
+    "ended",
+    function () {
+      this.currentTime = 0;
+      this.play();
+    },
+    false
+  );
+}
