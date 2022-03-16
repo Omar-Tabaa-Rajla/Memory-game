@@ -11,6 +11,7 @@
     <!-- creating the field that contains the name & nr. of tries -->
     <div class="info-container">
       <div class="name">Hello: <span></span></div>
+      <div class="timer">Time: <span>00:00</span></div>
       <div class="tries">Nr. of Tries: <span>0</span></div>
     </div>
     <!-- creating the big block that contains the cards -->
@@ -150,7 +151,7 @@
     </div>
 
     <!-- creating the splash screen that includes the start game button -->
-    <div class="control-buttons">
+    <div class="control-buttons flash-screen">
       <span>Start Game</span>
     </div>
     <audio
@@ -163,6 +164,7 @@
       preload="auto"
       id="failure"
     ></audio>
+    <audio src="./audio/end.mp3" preload="auto" id="end-sound"></audio>
     <script src="./js/index.js"></script>
   </body>
 </html>

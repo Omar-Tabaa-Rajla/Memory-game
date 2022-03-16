@@ -25,6 +25,37 @@ document.querySelector(".control-buttons span").onclick = function () {
     );
   }
   myAudio.play();
+  // setting a timer
+  const myTimer = document.querySelector(".timer span");
+  let levelOneDuration = 5;
+  displayTime(levelOneDuration);
+  const countDown = setInterval(() => {
+    levelOneDuration--;
+    displayTime(levelOneDuration);
+    if (levelOneDuration <= 0 || levelOneDuration < 1) {
+      // wenn die zeit vorbei ist
+      endTime(); // call this func
+      clearInterval(countDown); // clear the interval
+    }
+  }, 1000);
+  function displayTime(seconds) {
+    // it's a math thing to calculate the minutes and sec
+    const min = Math.floor(seconds / 60);
+    const sec = Math.floor(seconds % 60);
+    myTimer.innerHTML = `${min < 10 ? "0" : ""}${min}:${
+      sec < 10 ? "0" : ""
+    }${sec}`;
+  }
+  function endTime() {
+    document.querySelector(".timer span").innerHTML = "Time Out";
+    // myAudio.stop();
+    document.getElementById("end-sound").play();
+    blocksContainer.classList.add("no-clicking");
+
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
+  }
 };
 // setting a duration for every two cards, so I can't start flipping a new card until the first two go back to their previous situation.
 const duration = 1000;
@@ -121,3 +152,15 @@ function checkMatchedBlocks(firstBlock, secondBlock) {
     }, 500);
   }
 }
+
+// setting the timer. Maximum 90 seconds
+// let myTimer = document.querySelector(".timer span");
+// myTimer.innerHTML = levelOneDuration + " seconds";
+// windows.onload() = function () {
+//   let levelOneDuration = 90;
+//   myTimer.innerHTML= levelOneDuration + " seconds";
+//   setInterval(function () {
+
+//     levelOneDuration--;
+//   });
+// };
