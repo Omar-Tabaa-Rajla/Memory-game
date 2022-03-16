@@ -1,3 +1,4 @@
+import { backGroundAudio } from "./backGroundAudio.js";
 // taking the UserName & removing the splash screen (onclick())
 document.querySelector(".control-buttons span").onclick = function () {
   const yourName = prompt("What's your name?");
@@ -8,7 +9,7 @@ document.querySelector(".control-buttons span").onclick = function () {
   }
   document.querySelector(".control-buttons").remove();
   // to play the bg sound
-  myAudio.play();
+  backGroundAudio.play();
   //setting a timer
   const myTimer = document.querySelector(".timer span");
   let levelOneDuration = 5;
@@ -32,7 +33,7 @@ document.querySelector(".control-buttons span").onclick = function () {
   }
   function endTime() {
     document.querySelector(".timer span").innerHTML = "Time Out";
-    // myAudio.stop();
+    // backGroundAudio.stop();
     document.getElementById("end-sound").play();
     blocksContainer.classList.add("no-clicking");
 
@@ -140,22 +141,4 @@ function checkMatchedBlocks(firstBlock, secondBlock) {
       window.location.reload();
     }, 2500);
   }
-}
-// background audio and call it when onclick event
-// this function will play a background audio
-//I could've done it in an easier way by just adding an onclick attribute to the (start game)
-// then creating a function that loads the .mp3 and play() it
-//However with that easier way i'll not be able to repeat the sound after it ends
-myAudio = new Audio("../audio/piano-moment.mp3");
-if (typeof myAudio.loop == "boolean") {
-  myAudio.loop = true;
-} else {
-  myAudio.addEventListener(
-    "ended",
-    function () {
-      this.currentTime = 0;
-      this.play();
-    },
-    false
-  );
 }
