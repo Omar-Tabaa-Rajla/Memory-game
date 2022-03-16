@@ -12,7 +12,7 @@ document.querySelector(".control-buttons span").onclick = function () {
   backGroundAudio.play();
   //setting a timer
   const myTimer = document.querySelector(".timer span");
-  let levelOneDuration = 5;
+  let levelOneDuration = 120;
   displayTime(levelOneDuration);
   const countDown = setInterval(() => {
     levelOneDuration--;
@@ -111,7 +111,7 @@ function stopClicking() {
 }
 // checking the matched blocks
 function checkMatchedBlocks(firstBlock, secondBlock) {
-  let triesElement = doecument.querySelector(".tries span");
+  let triesElement = document.querySelector(".tries span");
   // I'll select the the the flipped cards accourding to thier data custom (eg. data-animal="cat")
   if (firstBlock.dataset.animal == secondBlock.dataset.animal) {
     // if they are matched then romove the (is flipped) class and put instead (hat-match)
