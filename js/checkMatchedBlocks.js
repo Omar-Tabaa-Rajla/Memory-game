@@ -1,3 +1,4 @@
+import { backGroundAudio } from "./backGroundAudio.js";
 // checking the matched blocks
 export function checkMatchedBlocks(firstBlock, secondBlock) {
   let triesElement = document.querySelector(".tries span");
@@ -26,8 +27,13 @@ export function checkMatchedBlocks(firstBlock, secondBlock) {
     }, 500);
   }
   if (document.querySelectorAll(".has-match").length === 20) {
+    backGroundAudio.pause();
+    document.querySelector("#success").pause();
+    setTimeout(() => {
+      document.querySelector("#applause-sound").play();
+    }, 1500);
     setTimeout(() => {
       window.location.reload();
-    }, 2500);
+    }, 3500);
   }
 }

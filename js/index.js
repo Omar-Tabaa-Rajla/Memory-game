@@ -35,7 +35,8 @@ startClick.onclick = function () {
   }
   function endTime() {
     document.querySelector(".timer span").innerHTML = "Time Out";
-    // backGroundAudio.stop();
+    backGroundAudio.pause();
+    // backGroundAudio.currentTime = 0;
     blocksContainer.classList.add("no-clicking");
     document.getElementById("end-sound").play();
 
