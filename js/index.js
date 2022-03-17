@@ -1,9 +1,10 @@
 import { backGroundAudio } from "./backGroundAudio.js";
-import { checkMatchedBlocks } from "./checkMatchedBlocks.js";
+import * as checkMatchedBlocks from "./checkMatchedBlocks.js";
 // taking the UserName & removing the splash screen (onclick())
 const startClick = document.querySelector(".control-buttons span");
 const flashScreen = document.querySelector(".control-buttons");
-let arrayOfUsers = [];
+// trying localStorage
+
 let savedName = localStorage.getItem("user name");
 if (savedName === null) {
   savedName = "";
@@ -55,6 +56,25 @@ startClick.onclick = function () {
     }, 2000);
   }
 };
+/* 
+
+
+Local Storage
+
+
+
+
+
+*/
+// let usersObject = {
+//   name: savedName,
+//   score: checkMatchedBlocks.triesElement.innerHTML,
+// };
+// let usersObject_serialized = JSON.stringify(usersObject);
+
+// localStorage.setItem("usersObject", usersObject_serialized);
+// let usersObject_deserialized = JSON.parse(localStorage.getItem("usersObject"));
+// console.log(usersObject_deserialized);
 
 // setting a duration for every two cards, so I can't start flipping a new card until the first two go back to their previous situation.
 const duration = 1000;
@@ -111,7 +131,10 @@ function flipBlock(selectedBlock) {
     stopClicking();
 
     //calling the matching function
-    checkMatchedBlocks(allFlippedBlocks[0], allFlippedBlocks[1]);
+    checkMatchedBlocks.checkMatchedBlocks(
+      allFlippedBlocks[0],
+      allFlippedBlocks[1]
+    );
   }
 }
 //stopClicking function
