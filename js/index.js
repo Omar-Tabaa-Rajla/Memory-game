@@ -2,14 +2,27 @@ import { backGroundAudio } from "./backGroundAudio.js";
 import { checkMatchedBlocks } from "./checkMatchedBlocks.js";
 // taking the UserName & removing the splash screen (onclick())
 const startClick = document.querySelector(".control-buttons span");
+const flashScreen = document.querySelector(".control-buttons");
+let UsersNamesArray = [];
+let savedName = localStorage.getItem("user name");
+if (savedName === null) {
+  savedName = "";
+} else {
+  UsersNamesArray.push(savedName);
+}
 startClick.onclick = function () {
   const yourName = prompt("What's your name?");
+  //It may help me with the local storage
+  // let arrayOfUsers = [];
+  // arrayOfUsers.push(yourName);
+  window.localStorage.setItem("user name", yourName);
   if (yourName == null || yourName == "") {
     document.querySelector(".name span").innerHTML = "Player";
   } else {
     document.querySelector(".name span").innerHTML = yourName;
+    UsersNamesArray.push(yourName);
   }
-  document.querySelector(".control-buttons").remove();
+  flashScreen.remove();
   // to play the bg sound
   backGroundAudio.play();
   //setting a timer
@@ -45,6 +58,7 @@ startClick.onclick = function () {
     }, 2000);
   }
 };
+
 // setting a duration for every two cards, so I can't start flipping a new card until the first two go back to their previous situation.
 const duration = 1000;
 
@@ -112,3 +126,7 @@ function stopClicking() {
     blocksContainer.classList.remove("no-clicking");
   }, duration);
 }
+
+//LOCAL STORAGE:
+// window.localStorage.setItem(`Top Score goes to, ${yourName}`);
+// console.log(window.localStorage);

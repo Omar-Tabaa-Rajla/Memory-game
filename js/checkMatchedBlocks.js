@@ -17,7 +17,8 @@ export function checkMatchedBlocks(firstBlock, secondBlock) {
     }, 500);
   } else {
     triesElement.innerHTML = parseInt(triesElement.innerHTML) + 1; // counting the tries
-    // if the two cards aren't the same, the remove the (is-flipped) to make them turn back and the failure sound
+
+    // if the two cards aren't the same, then remove the (is-flipped) to make them turn back and the failure sound
     setTimeout(() => {
       firstBlock.classList.remove("is-flipped");
       secondBlock.classList.remove("is-flipped");
