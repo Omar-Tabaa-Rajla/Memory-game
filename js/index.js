@@ -3,12 +3,10 @@ import { checkMatchedBlocks } from "./checkMatchedBlocks.js";
 // taking the UserName & removing the splash screen (onclick())
 const startClick = document.querySelector(".control-buttons span");
 const flashScreen = document.querySelector(".control-buttons");
-let UsersNamesArray = [];
+let arrayOfUsers = [];
 let savedName = localStorage.getItem("user name");
 if (savedName === null) {
   savedName = "";
-} else {
-  UsersNamesArray.push(savedName);
 }
 startClick.onclick = function () {
   const yourName = prompt("What's your name?");
@@ -20,7 +18,6 @@ startClick.onclick = function () {
     document.querySelector(".name span").innerHTML = "Player";
   } else {
     document.querySelector(".name span").innerHTML = yourName;
-    UsersNamesArray.push(yourName);
   }
   flashScreen.remove();
   // to play the bg sound
