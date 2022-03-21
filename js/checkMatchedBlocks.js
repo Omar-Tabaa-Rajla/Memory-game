@@ -18,7 +18,10 @@ export function checkMatchedBlocks(firstBlock, secondBlock) {
   } else {
     triesElement.innerHTML = parseInt(triesElement.innerHTML) + 1; // counting the tries
 
-    window.localStorage.setItem("score", triesElement.innerHTML);
+    let triesStorage = window.localStorage.setItem(
+      "score",
+      triesElement.innerHTML
+    );
 
     // if the two cards aren't the same, then remove the (is-flipped) to make them turn back and the failure sound
     setTimeout(() => {

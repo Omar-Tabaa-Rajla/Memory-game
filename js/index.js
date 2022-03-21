@@ -17,6 +17,8 @@ startClick.onclick = function () {
   window.localStorage.setItem("user name", yourName);
   if (yourName == null || yourName == "") {
     document.querySelector(".name span").innerHTML = "Player";
+    // if the user name ist null then will not be stored
+    window.localStorage.removeItem("user name", yourName);
   } else {
     document.querySelector(".name span").innerHTML = yourName;
   }
