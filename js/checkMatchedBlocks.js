@@ -8,9 +8,9 @@ export function checkMatchedBlocks(firstBlock, secondBlock) {
   let triesElement = document.querySelector(".tries span");
   const scoreElement = document.querySelector(".score");
 
-  // I'll select the the the flipped cards accourding to thier data custom (eg. data-animal="cat")
+  // I'll select the the the flipped cards according to their data custom (eg. data-animal="cat")
   if (firstBlock.dataset.animal == secondBlock.dataset.animal) {
-    // if they are matched then romove the (is flipped) class and put instead (hat-match)
+    // if they are matched then remove the (is flipped) class and put instead (hat-match)
     // then after a half second play the success sound
     firstBlock.classList.remove("is-flipped");
     secondBlock.classList.remove("is-flipped");
@@ -32,19 +32,63 @@ export function checkMatchedBlocks(firstBlock, secondBlock) {
     trying localStorage block
     
     */
-    const heighScores = JSON.parse(localStorage.getItem("heighScores")) || [];
-    let mostRecentScore = localStorage.getItem("mostRecentScore");
-    // scoreElement.innerHTML = mostRecentScore;
-    mostRecentScore = JSON.parse(scoreElement.innerHTML);
+    // const heighScores = JSON.parse(localStorage.getItem("heighScores")) || [];
+    // let heighScores = [];
+    // const getUser = localStorage.getItem("user name");
+    let savedName = localStorage.getItem("user name");
+    const scoreSaved = localStorage.getItem("score");
+    // let mostRecentScore = JSON.parse(localStorage.getItem("highScores")) || [
+    //   {},
+    // ];
+    // const mostRecentScore = localStorage.getItem("mostRecentScore");
+    let heighScores = JSON.parse(localStorage.getItem("heighScores")) || [{}];
+    // console.log("heighScores", heighScores);
+    // console.log("mostRecentScore", mostRecentScore);
+    // triesElement.innerHTML = scoreSaved;
+    // console.log("scoreSaved", scoreSaved);
+    // mostRecentScore = JSON.parse(scoreElement.innerHTML);
+
+    // mostRecentScore = localStorage.getItem("highScores") || []
+    // if (
+    //   mostRecentScore.length === 0 ||
+    //   mostRecentScore[mostRecentScore.length - 1].name !== savedName
+    // ) {
+
     const saveHeighScore = () => {
+      // if (
+      //   heighScores.length === 0 ||
+      //   heighScores[heighScores.length - 1].name !== savedName
+      // ) {
       const score = {
-        score: mostRecentScore,
-        name: onClickFunction.savedName,
+        score: triesElement.innerHTML,
+        name: savedName,
       };
       heighScores.push(score);
+      localStorage.setItem("highScores", JSON.stringify(heighScores));
+      // } else {
+      //   heighScores[heighScores.length - 1].score = scoreSaved;
+      // }
       console.log(heighScores);
     };
     saveHeighScore();
+
+    // const score = {
+    //   score: triesElement.innerHTML,
+    //   name: savedName,
+    // };
+    // if (
+    //   mostRecentScore.length === 0 ||
+    //   mostRecentScore[mostRecentScore.length - 1].name !== savedName
+    // ) {
+    //   mostRecentScore.push(score);
+
+    //   // console.log(mostRecentScore);
+    //   localStorage.setItem("highScores", JSON.stringify(mostRecentScore));
+    // } else {
+    //   mostRecentScore[mostRecentScore.length - 1].score = scoreSaved;
+    // }
+    // console.log(mostRecentScore);
+
     /**
     
     localStorage block
