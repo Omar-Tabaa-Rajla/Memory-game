@@ -26,7 +26,7 @@ export const onClickFunction = (startClick.onclick = function () {
   //It may help me with the local storage
   // arrayOfUsers = arrayOfUsers.push(yourName);
   // console.log(arrayOfUsers);
-  let nameStorage = window.localStorage.setItem("user name", yourName);
+  localStorage.setItem("name", yourName);
   if (yourName == null || yourName == "") {
     document.querySelector(".name span").innerHTML = "Player";
     // if the user name ist null then will not be stored

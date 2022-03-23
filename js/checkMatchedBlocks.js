@@ -97,24 +97,29 @@ export function checkMatchedBlocks(firstBlock, secondBlock) {
     */
     // if the player has no name => won't be stored
     if (document.querySelector(".name span").innerHTML === "Player") {
-      window.localStorage.removeItem("score", triesElement.innerHTML);
+      localStorage.removeItem("score", triesElement.innerHTML);
     } else {
-      let triesStorage = window.localStorage.setItem(
-        "score",
-        triesElement.innerHTML
-      );
+      localStorage.setItem("score", triesElement.innerHTML);
       //------------------------------LOCAL STORAGE----------------------------------
+      let name = localStorage.getItem("name");
+      const score = localStorage.getItem("score");
+      let userDataItems =
+        JSON.parse(localStorage.getItem("userDataItems")) || [];
+      let userDataItem = userDataItems.find((m) => m.name === name);
+      if (userDataItem !== undefined) {
+        userDataItems.find((m) => m.name === name).score = score;
+      } else {
+        userDataItems.push({
+          score,
+          name,
+        });
+      }
+      // console.log("aaa", userDataItems);
+      // userDataItems.push(userDataItem);
+      // console.log("bbb", userDataItems);
 
-      let savedName = localStorage.getItem("user name");
-      const savedScore = localStorage.getItem("score");
-      let heighScores = JSON.parse(localStorage.getItem("heighScores")) || [];
-      const score = {
-        score: triesElement.innerHTML,
-        name: savedName,
-      };
-      heighScores.push(score);
-      localStorage.setItem("highScores", JSON.stringify(heighScores));
-      console.log("heighScore", heighScores);
+      localStorage.setItem("userDataItems", JSON.stringify(userDataItems));
+      console.log("userDataItems", userDataItems);
     }
     //--------------------------END OF LOCAL STORAGE----------------------------------
 
