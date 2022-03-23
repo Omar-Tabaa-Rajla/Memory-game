@@ -52,7 +52,7 @@ export function checkMatchedBlocks(firstBlock, secondBlock) {
       // save the result in the localStorage ... YES BABY!
       localStorage.setItem("userDataItems", JSON.stringify(userDataItems));
 
-      console.log("userDataItems", userDataItems);
+      // console.log("userDataItems", userDataItems);
 
       winner = userDataItems.filter((m, i) => {
         if (i === 0) {
@@ -64,7 +64,7 @@ export function checkMatchedBlocks(firstBlock, secondBlock) {
         myWinner = `${i.name} with ${i.score} wrong tries.`;
       }
 
-      console.log(myWinner, "😛");
+      // console.log(myWinner, "😛");
     }
     //--------------------------END OF LOCAL STORAGE----------------------------------
 
