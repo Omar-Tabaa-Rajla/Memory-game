@@ -1,6 +1,6 @@
 import { backGroundAudio } from "./backGroundAudio.js";
 import * as onClickFunction from "./onClickFunction.js";
-// import { saveHeighScore } from "./saveToLocalStorage.js";
+// import { showHighScore } from "./showHighScore.js";
 // let arrayOfScores = [];
 // checking the matched blocks
 
@@ -23,78 +23,6 @@ export function checkMatchedBlocks(firstBlock, secondBlock) {
     }, 500);
   } else {
     triesElement.innerHTML = parseInt(triesElement.innerHTML) + 1; // counting the tries
-    // let triesStorage = window.localStorage.setItem(
-    //   "score",
-    //   triesElement.innerHTML
-    // );
-    /*
-    
-    trying localStorage block
-    
-    */
-    // const heighScores = JSON.parse(localStorage.getItem("heighScores")) || [];
-    // let heighScores = [];
-    // const getUser = localStorage.getItem("user name");
-    // let savedName = localStorage.getItem("user name");
-    // const scoreSaved = localStorage.getItem("score");
-    // let mostRecentScore = JSON.parse(localStorage.getItem("highScores")) || [
-    //   {},
-    // ];
-    // const mostRecentScore = localStorage.getItem("mostRecentScore");
-    // let heighScores = JSON.parse(localStorage.getItem("heighScores")) || [{}];
-    // console.log("heighScores", heighScores);
-    // console.log("mostRecentScore", mostRecentScore);
-    // triesElement.innerHTML = scoreSaved;
-    // console.log("scoreSaved", scoreSaved);
-    // mostRecentScore = JSON.parse(scoreElement.innerHTML);
-
-    // mostRecentScore = localStorage.getItem("highScores") || []
-    // if (
-    //   mostRecentScore.length === 0 ||
-    //   mostRecentScore[mostRecentScore.length - 1].name !== savedName
-    // ) {
-
-    // const saveHeighScore = () => {
-    // if (
-    //   heighScores.length === 0 ||
-    //   heighScores[heighScores.length - 1].name !== savedName
-    // ) {
-    // const score = {
-    //   score: triesElement.innerHTML,
-    //   name: savedName,
-    // };
-    // heighScores.push(score);
-    // localStorage.setItem("highScores", JSON.stringify(heighScores));
-    // } else {
-    //   heighScores[heighScores.length - 1].score = scoreSaved;
-    // }
-    //   console.log(heighScores);
-    // };
-    // saveHeighScore();
-
-    // const score = {
-    //   score: triesElement.innerHTML,
-    //   name: savedName,
-    // };
-    // if (
-    //   mostRecentScore.length === 0 ||
-    //   mostRecentScore[mostRecentScore.length - 1].name !== savedName
-    // ) {
-    //   mostRecentScore.push(score);
-
-    //   // console.log(mostRecentScore);
-    //   localStorage.setItem("highScores", JSON.stringify(mostRecentScore));
-    // } else {
-    //   mostRecentScore[mostRecentScore.length - 1].score = scoreSaved;
-    // }
-    // console.log(mostRecentScore);
-
-    /**
-    
-    localStorage block
-
-
-    */
     // if the player has no name => won't be stored
     if (document.querySelector(".name span").innerHTML === "Player") {
       localStorage.removeItem("score", triesElement.innerHTML);
@@ -114,12 +42,22 @@ export function checkMatchedBlocks(firstBlock, secondBlock) {
           name,
         });
       }
-      // console.log("aaa", userDataItems);
-      // userDataItems.push(userDataItem);
-      // console.log("bbb", userDataItems);
-
+      // sorting the scores
+      userDataItems.sort((a, b) => a.score - b.score);
+      // just top 5
+      userDataItems.splice(5);
+      // save the result in the localStorage ... YES BABY!
       localStorage.setItem("userDataItems", JSON.stringify(userDataItems));
+
       console.log("userDataItems", userDataItems);
+      function showHighScore() {
+        userDataItems.map((m, i) => {
+          if (i === 0) {
+            console.log(`${m.name} - ${m.score}`);
+          }
+        });
+      }
+      showHighScore();
     }
     //--------------------------END OF LOCAL STORAGE----------------------------------
 
@@ -144,21 +82,3 @@ export function checkMatchedBlocks(firstBlock, secondBlock) {
     }, 3500);
   }
 }
-
-// const addingScore = (param) => {
-//   return arrayOfScores.push(param);
-// };
-
-// function findingHeighScore(par) {
-//   const storedScore = localStorage.getItem("score");
-//   const heighScores = JSON.parse(localStorage.getItem("heighScores")) || [];
-//   const mostRecentScore = localStorage.getItem("mostRecentScore");
-//   triesStorage.innerHTML = mostRecentScore;
-//   const saveHeighScore = () => {
-//     const score = {
-//       score: mostRecentScore,
-//       name: onClickFunction.yourName,
-//     };
-//     console.log(score);
-//   };
-// }
