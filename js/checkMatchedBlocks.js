@@ -1,9 +1,12 @@
 import { backGroundAudio } from "./backGroundAudio.js";
 import * as onClickFunction from "./onClickFunction.js";
 // import { showHighScore } from "./showHighScore.js";
+let blocksContainer = document.querySelector(".memory-game-blocks");
 // let arrayOfScores = [];
 // checking the matched blocks
 const highScoreElement = document.querySelector(".high-score");
+var winner;
+var myWinner;
 export function checkMatchedBlocks(firstBlock, secondBlock) {
   let triesElement = document.querySelector(".tries span");
   const scoreElement = document.querySelector(".score");
@@ -51,12 +54,17 @@ export function checkMatchedBlocks(firstBlock, secondBlock) {
 
       console.log("userDataItems", userDataItems);
 
-      var winner = userDataItems.filter((m, i) => {
+      winner = userDataItems.filter((m, i) => {
         if (i === 0) {
           return ` ${m.name} - ${m.score} `;
         }
       });
-      console.log(winner);
+      // to get the keys out of the object
+      for (let i of winner) {
+        myWinner = `${i.name} with ${i.score} wrong tries.`;
+      }
+
+      console.log(myWinner, "😛");
     }
     //--------------------------END OF LOCAL STORAGE----------------------------------
 
@@ -71,14 +79,15 @@ export function checkMatchedBlocks(firstBlock, secondBlock) {
   }
   if (document.querySelectorAll(".has-match").length === 20) {
     backGroundAudio.pause();
-    console.log("hhhhhh", winner);
     highScoreElement.style.opacity = "0.8";
     highScoreElement.style.display = "block";
     function showWinner() {
-      highScoreElement.innerHTML = `<p> the winner is  ${winner}. </p> <br />
-    <p> You've finished the game with ${triesElement.innerHTML} wrong tries. </p>`;
+      highScoreElement.innerHTML = `<p> The winner is ${myWinner}. </p> <br />
+    <p> You've finished the game with ${triesElement.innerHTML} wrong tries. </p> <br />
+    <p> try to be better! LOSER 😛 </p>`;
     }
     showWinner();
+    blocksContainer.style.opacity = "0.2";
     // findingHeighScore(triesStorage);
     document.querySelector("#success").pause();
     setTimeout(() => {
