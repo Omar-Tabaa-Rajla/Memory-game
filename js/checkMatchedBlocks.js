@@ -35,13 +35,13 @@ export function checkMatchedBlocks(firstBlock, secondBlock) {
     // const heighScores = JSON.parse(localStorage.getItem("heighScores")) || [];
     // let heighScores = [];
     // const getUser = localStorage.getItem("user name");
-    let savedName = localStorage.getItem("user name");
-    const scoreSaved = localStorage.getItem("score");
+    // let savedName = localStorage.getItem("user name");
+    // const scoreSaved = localStorage.getItem("score");
     // let mostRecentScore = JSON.parse(localStorage.getItem("highScores")) || [
     //   {},
     // ];
     // const mostRecentScore = localStorage.getItem("mostRecentScore");
-    let heighScores = JSON.parse(localStorage.getItem("heighScores")) || [{}];
+    // let heighScores = JSON.parse(localStorage.getItem("heighScores")) || [{}];
     // console.log("heighScores", heighScores);
     // console.log("mostRecentScore", mostRecentScore);
     // triesElement.innerHTML = scoreSaved;
@@ -54,23 +54,23 @@ export function checkMatchedBlocks(firstBlock, secondBlock) {
     //   mostRecentScore[mostRecentScore.length - 1].name !== savedName
     // ) {
 
-    const saveHeighScore = () => {
-      // if (
-      //   heighScores.length === 0 ||
-      //   heighScores[heighScores.length - 1].name !== savedName
-      // ) {
-      const score = {
-        score: triesElement.innerHTML,
-        name: savedName,
-      };
-      heighScores.push(score);
-      localStorage.setItem("highScores", JSON.stringify(heighScores));
-      // } else {
-      //   heighScores[heighScores.length - 1].score = scoreSaved;
-      // }
-      console.log(heighScores);
-    };
-    saveHeighScore();
+    // const saveHeighScore = () => {
+    // if (
+    //   heighScores.length === 0 ||
+    //   heighScores[heighScores.length - 1].name !== savedName
+    // ) {
+    // const score = {
+    //   score: triesElement.innerHTML,
+    //   name: savedName,
+    // };
+    // heighScores.push(score);
+    // localStorage.setItem("highScores", JSON.stringify(heighScores));
+    // } else {
+    //   heighScores[heighScores.length - 1].score = scoreSaved;
+    // }
+    //   console.log(heighScores);
+    // };
+    // saveHeighScore();
 
     // const score = {
     //   score: triesElement.innerHTML,
@@ -95,7 +95,7 @@ export function checkMatchedBlocks(firstBlock, secondBlock) {
 
 
     */
-
+    // if the player has no name => won't be stored
     if (document.querySelector(".name span").innerHTML === "Player") {
       window.localStorage.removeItem("score", triesElement.innerHTML);
     } else {
@@ -103,14 +103,20 @@ export function checkMatchedBlocks(firstBlock, secondBlock) {
         "score",
         triesElement.innerHTML
       );
-      //   console.log("scores before", arrayOfScores);
-      //   addingScore(triesElement.innerHTML);
-      //   console.log("scores after", arrayOfScores);
+      //------------------------------LOCAL STORAGE----------------------------------
+
+      let savedName = localStorage.getItem("user name");
+      const savedScore = localStorage.getItem("score");
+      let heighScores = JSON.parse(localStorage.getItem("heighScores")) || [];
+      const score = {
+        score: triesElement.innerHTML,
+        name: savedName,
+      };
+      heighScores.push(score);
+      localStorage.setItem("highScores", JSON.stringify(heighScores));
+      console.log("heighScore", heighScores);
     }
-    //else {
-    //   window.localStorage.removeItem("score", triesElement.innerHTML);
-    //   // window.localStorage.clear();
-    // }
+    //--------------------------END OF LOCAL STORAGE----------------------------------
 
     // if the two cards aren't the same, then remove the (is-flipped) to make them turn back and the failure sound
     setTimeout(() => {

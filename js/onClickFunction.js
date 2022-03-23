@@ -40,7 +40,7 @@ export const onClickFunction = (startClick.onclick = function () {
   }
   flashScreen.remove();
   // to play the bg sound
-  backGroundAudio.play();
+  // backGroundAudio.play();
   //setting a timer
   const myTimer = document.querySelector(".timer span");
   let levelOneDuration = 120;
