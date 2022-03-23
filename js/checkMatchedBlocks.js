@@ -3,7 +3,7 @@ import * as onClickFunction from "./onClickFunction.js";
 // import { showHighScore } from "./showHighScore.js";
 // let arrayOfScores = [];
 // checking the matched blocks
-
+const highScoreElement = document.querySelector(".high-score");
 export function checkMatchedBlocks(firstBlock, secondBlock) {
   let triesElement = document.querySelector(".tries span");
   const scoreElement = document.querySelector(".score");
@@ -50,14 +50,13 @@ export function checkMatchedBlocks(firstBlock, secondBlock) {
       localStorage.setItem("userDataItems", JSON.stringify(userDataItems));
 
       console.log("userDataItems", userDataItems);
-      function showHighScore() {
-        userDataItems.map((m, i) => {
-          if (i === 0) {
-            console.log(`${m.name} - ${m.score}`);
-          }
-        });
-      }
-      showHighScore();
+
+      var winner = userDataItems.filter((m, i) => {
+        if (i === 0) {
+          return ` ${m.name} - ${m.score} `;
+        }
+      });
+      console.log(winner);
     }
     //--------------------------END OF LOCAL STORAGE----------------------------------
 
@@ -72,13 +71,22 @@ export function checkMatchedBlocks(firstBlock, secondBlock) {
   }
   if (document.querySelectorAll(".has-match").length === 20) {
     backGroundAudio.pause();
+    console.log("hhhhhh", winner);
+    highScoreElement.style.opacity = "0.8";
+    highScoreElement.style.display = "block";
+    function showWinner() {
+      highScoreElement.innerHTML = `<p> the winner is  ${winner}. </p> <br />
+    <p> You've finished the game with ${triesElement.innerHTML} wrong tries. </p>`;
+    }
+    showWinner();
     // findingHeighScore(triesStorage);
     document.querySelector("#success").pause();
     setTimeout(() => {
       document.querySelector("#applause-sound").play();
     }, 1500);
+
     setTimeout(() => {
       window.location.reload();
-    }, 3500);
+    }, 10000);
   }
 }

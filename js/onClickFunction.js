@@ -2,7 +2,7 @@ import { backGroundAudio } from "./backGroundAudio.js";
 // import { saveHeighScore } from "./saveToLocalStorage.js";
 // taking the UserName & removing the splash screen (onclick())
 const startClick = document.querySelector(".control-buttons span");
-const flashScreen = document.querySelector(".control-buttons");
+// const flashScreen = document.querySelector(".control-buttons");
 // let arrayOfUsers = [];
 // console.log(arrayOfUsers);
 
@@ -12,7 +12,7 @@ if (savedName === null) {
 }
 export const onClickFunction = (startClick.onclick = function () {
   const getScore = localStorage.getItem("score");
-  // const getUser = localStorage.getItem("user name");
+  const flashScreen = document.querySelector(".control-buttons");
   const yourName = prompt("What's your name?");
   const scoreElement = document.querySelector(".score");
   if (getScore && savedName === yourName) {

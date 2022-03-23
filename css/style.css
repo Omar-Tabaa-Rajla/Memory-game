@@ -102,3 +102,18 @@ body {
   border-radius: 0.5rem;
   cursor: pointer;
 }
+
+.high-score {
+  position: absolute;
+  top: 15%;
+  left: 33.3%;
+  right: 50%;
+  width: 500px;
+  height: 200px;
+  padding: 2rem;
+  color: black;
+  background-color: antiquewhite;
+  margin: 10% auto;
+  opacity: 0;
+  display: none;
+}
