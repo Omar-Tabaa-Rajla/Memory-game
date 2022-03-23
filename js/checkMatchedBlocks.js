@@ -1,7 +1,8 @@
 import { backGroundAudio } from "./backGroundAudio.js";
-import * as onClickFunction from "./onClickFunction.js";
+import { onClickFunction } from "./onClickFunction.js";
 // import { showHighScore } from "./showHighScore.js";
 let blocksContainer = document.querySelector(".memory-game-blocks");
+
 // let arrayOfScores = [];
 // checking the matched blocks
 const highScoreElement = document.querySelector(".high-score");
@@ -82,9 +83,14 @@ export function checkMatchedBlocks(firstBlock, secondBlock) {
     highScoreElement.style.opacity = "0.8";
     highScoreElement.style.display = "block";
     function showWinner() {
-      highScoreElement.innerHTML = `<p> The winner is ${myWinner}. </p> <br />
+      if (onClickFunction.yourName == null || onClickFunction.yourName == "") {
+        highScoreElement.innerHTML = `<p> The winner is Player. </p> <br />
+    <p> You've finished the game with ${triesElement.innerHTML} wrong tries. </p> <br />`;
+      } else {
+        highScoreElement.innerHTML = `<p> The winner is ${myWinner}. </p> <br />
     <p> You've finished the game with ${triesElement.innerHTML} wrong tries. </p> <br />
     <p> try to be better! LOSER 😛 </p>`;
+      }
     }
     showWinner();
     blocksContainer.style.opacity = "0.2";
