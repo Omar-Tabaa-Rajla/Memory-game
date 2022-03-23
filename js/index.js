@@ -3,7 +3,7 @@ import * as checkMatchedBlocks from "./checkMatchedBlocks.js";
 // setting a duration for every two cards, so I can't start flipping a new card until the first two go back to their previous situation.
 const duration = 1000;
 
-const blocksContainer = document.querySelector(".memory-game-blocks");
+let blocksContainer = document.querySelector(".memory-game-blocks");
 // array.from(foo) => ["f","o","o"]
 // so in my situation i'll get every fucking block alone in an array called blocks["div1","div2",...]
 // to be able to randomize (shuffle) them by calling every block with its own key number
