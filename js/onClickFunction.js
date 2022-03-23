@@ -1,10 +1,8 @@
 import { backGroundAudio } from "./backGroundAudio.js";
-// import { saveHeighScore } from "./saveToLocalStorage.js";
+
 // taking the UserName & removing the splash screen (onclick())
 const startClick = document.querySelector(".control-buttons span");
 // const flashScreen = document.querySelector(".control-buttons");
-// let arrayOfUsers = [];
-// console.log(arrayOfUsers);
 
 let savedName = localStorage.getItem("user name");
 if (savedName === null) {
@@ -18,11 +16,6 @@ export const onClickFunction = (startClick.onclick = function () {
   if (getScore && savedName === yourName) {
     scoreElement.innerHTML = getScore;
   }
-  //else {
-  //   localStorage.setItem("score", 0);
-  //   scoreElement.innerHTML = 0;
-  // }
-
   //It may help me with the local storage
   // arrayOfUsers = arrayOfUsers.push(yourName);
   // console.log(arrayOfUsers);
@@ -31,16 +24,12 @@ export const onClickFunction = (startClick.onclick = function () {
     document.querySelector(".name span").innerHTML = "Player";
     // if the user name ist null then will not be stored
     window.localStorage.removeItem("user name", yourName);
-    // window.localStorage.removeItem(
-    //   "score",
-    //   checkMatchedBlocks.triesElement.innerHTML
-    // );
   } else {
     document.querySelector(".name span").innerHTML = yourName;
   }
   flashScreen.remove();
   // to play the bg sound
-  // backGroundAudio.play();
+  backGroundAudio.play();
   //setting a timer
   const myTimer = document.querySelector(".timer span");
   let levelOneDuration = 120;
