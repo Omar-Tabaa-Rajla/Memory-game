@@ -30,6 +30,7 @@ export function checkMatchedBlocks(firstBlock, secondBlock) {
     // if the player has no name => won't be stored
     if (document.querySelector(".name span").innerHTML === "Player") {
       localStorage.removeItem("score", triesElement.innerHTML);
+      localStorage.removeItem("name", onClickFunction.yourName);
     } else {
       localStorage.setItem("score", triesElement.innerHTML);
       //------------------------------LOCAL STORAGE----------------------------------
@@ -65,7 +66,7 @@ export function checkMatchedBlocks(firstBlock, secondBlock) {
         myWinner = `${i.name} with ${i.score} wrong tries.`;
       }
 
-      // console.log(myWinner, "😛");
+      console.log(myWinner, "😛");
     }
     //--------------------------END OF LOCAL STORAGE----------------------------------
 
@@ -83,14 +84,9 @@ export function checkMatchedBlocks(firstBlock, secondBlock) {
     highScoreElement.style.opacity = "0.8";
     highScoreElement.style.display = "block";
     function showWinner() {
-      if (onClickFunction.yourName == null || onClickFunction.yourName == "") {
-        highScoreElement.innerHTML = `<p> The winner is Player. </p> <br />
-    <p> You've finished the game with ${triesElement.innerHTML} wrong tries. </p> <br />`;
-      } else {
-        highScoreElement.innerHTML = `<p> The winner is ${myWinner}. </p> <br />
+      highScoreElement.innerHTML = `<p> The winner is ${myWinner}. </p> <br />
     <p> You've finished the game with ${triesElement.innerHTML} wrong tries. </p> <br />
-    <p> try to be better! LOSER 😛 </p>`;
-      }
+    <p> Try to be better! LOSER 😛 </p>`;
     }
     showWinner();
     blocksContainer.style.opacity = "0.2";
