@@ -66,11 +66,11 @@ export function checkMatchedBlocks(firstBlock, secondBlock) {
         myWinner = `${i.name} with ${i.score} wrong tries.`;
       }
 
-      console.log(myWinner, "😛");
+      // console.log(myWinner);
     }
     //--------------------------END OF LOCAL STORAGE----------------------------------
 
-    // if the two cards aren't the same, then remove the (is-flipped) to make them turn back and the failure sound
+    // if the two cards aren't the same, then remove the (is-flipped) to turn em back and play the failure sound
     setTimeout(() => {
       firstBlock.classList.remove("is-flipped");
       secondBlock.classList.remove("is-flipped");
@@ -90,7 +90,6 @@ export function checkMatchedBlocks(firstBlock, secondBlock) {
     }
     showWinner();
     blocksContainer.style.opacity = "0.2";
-    // findingHeighScore(triesStorage);
     document.querySelector("#success").pause();
     setTimeout(() => {
       document.querySelector("#applause-sound").play();
