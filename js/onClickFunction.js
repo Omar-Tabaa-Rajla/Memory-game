@@ -2,7 +2,10 @@ import { backGroundAudio } from "./backGroundAudio.js";
 
 // taking the UserName & removing the splash screen (onclick())
 const startClick = document.querySelector(".control-buttons span");
-// const flashScreen = document.querySelector(".control-buttons");
+let blocksContainer = document.querySelector(".memory-game-blocks");
+const cardsElement = document.querySelectorAll(
+  ".memory-game-blocks .game-block"
+);
 
 let savedName = localStorage.getItem("user name");
 if (savedName === null) {
@@ -16,9 +19,7 @@ export const onClickFunction = (startClick.onclick = function () {
   if (getScore && savedName === yourName) {
     scoreElement.innerHTML = getScore;
   }
-  //It may help me with the local storage
-  // arrayOfUsers = arrayOfUsers.push(yourName);
-  // console.log(arrayOfUsers);
+
   localStorage.setItem("name", yourName);
   if (yourName == null || yourName == "") {
     document.querySelector(".name span").innerHTML = "Player";

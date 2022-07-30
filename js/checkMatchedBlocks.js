@@ -1,10 +1,7 @@
 import { backGroundAudio } from "./backGroundAudio.js";
 import { onClickFunction } from "./onClickFunction.js";
-// import { showHighScore } from "./showHighScore.js";
 let blocksContainer = document.querySelector(".memory-game-blocks");
 
-// let arrayOfScores = [];
-// checking the matched blocks
 const highScoreElement = document.querySelector(".high-score");
 var winner;
 var myWinner;
